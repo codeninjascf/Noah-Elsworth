@@ -16,18 +16,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-      float movement = moveSpeed * Input.GetAxis("Horizontal")
+      float movement = moveSpeed * Input.GetAxis("Horizontal");
 
       Player.Turn(_rigidbody, movement);
 
       _rigidbody.position += movement * Time.deltaTime * Vector2.right;
     }
-}
-void onCollisionEnter2D() 
+
+void OnCollisionEnter2D() 
 {
-    if (_rigidbody.velocity.y < 0)
+    if (_rigidbody.velocity.y <= 0)
     {
-        _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
-        }
+        _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
+}
 }
