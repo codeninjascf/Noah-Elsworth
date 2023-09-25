@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Collectibles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+//If an object collides witha trigger
+private void OnTriggerEnter2D(Collider2D collision)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Add score
+        Score.score++;
     }
 }

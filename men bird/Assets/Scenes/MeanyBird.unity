@@ -244,6 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e9a8003d0b1934bb71b4f8eaa6b29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spikes: {fileID: 8324910318186821867, guid: 784b6a570eadceb4493690aaffdd29fa, type: 3}
+  height: 2
 --- !u!4 &525858362
 Transform:
   m_ObjectHideFlags: 0
