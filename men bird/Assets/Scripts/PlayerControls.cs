@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     //Game manager object
-[Header("Game Controller Object for controlling the game")]
-public GameController GameController;
-[Header("Default Velocity")]
-public float velocity = 1;
-//Physics for the bird
-private Rigidbody2D rb;
-//height of the bird object on the y axis
-private float objectHeight;
+    [Header("Game Controller Object for controlling the game")]
+    public GameController GameController;
+    [Header("Default Velocity")]
+    public float velocity = 1;
+    //Physics for the bird
+    private Rigidbody2D rb;
+    //height of the bird object on the y axis
+    private float objectHeight;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,18 +34,19 @@ private float objectHeight;
             //The bird will float up on the Y axis
             //and float back down on the Y axis
             rb.velocity = Vector2.up * velocity;
-
-            //Function where the player collides with a object
-            public void OnCollisionEnter2D(Collision2D collision)
-            {
-                if(collision.gameObject.tag == "HighSpike" || collision.gameObject.tag == "LowSpike" || collision.gameObject.tag == "Ground")
-                {
-                    //Game is at a stopping state
-                    Time.timeScale = 0;
-                    
-                }
-            }
         }
     }
-}
+    //Function where the player collides with a object
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "HighSpike" || collision.gameObject.tag == "LowSpike" || collision.gameObject.tag == "Ground")
+        {
+            //Game is at a stopping state
+            Time.timeScale = 0;
+
+        }
+    }
+}       
+    
+
 
