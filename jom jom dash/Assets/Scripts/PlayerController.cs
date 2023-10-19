@@ -23,42 +23,43 @@ public class PlayerController : MonoBehaviour
     }
     }
 
-    void onCollisionEnter2D(Collision2D other) 
-    
-    if (other.gameObject.CompareTag("Ground"))
+    void onCollisionEnter2D(Collision2D other)
     {
-        if (PLayerCollisions.CollidedWithSide(gameObject, other.gameObject, PlayerCollisions.Side.Bottom))
-    {
-        _isGrounded = true;
-    }
-}
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            if (PlayerCollisions.CollidedWithSide(gameObject, other.gameObject, PlayerCollisions.Side.Bottom))
+            {
+                _isGrounded = true;
+            }
             else
-{
-    GameManager.EndGame();
-}
-}
+            {
+                GameManager.EndGame();
+            }
+        }
+    }
 
     void OnCollisionStay2D(Collision2D other)
-{
-        if (other.gameObject.CompareTag("Ground"))
     {
-        _isGrounded = true;
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+        }
     }
-}
 
     void OnCollisionExit2D(Collision2D other)
-{
-    if(other.gameObject.CompareTag("Ground"))
     {
-        _isGrounded = false;
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = false;
+        }
     }
-}
 
-void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.gameObject.CompareTag("Coin"))
+    void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.Score += 25;
-        other.gameObject.SetActive(false);
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            GameManager.Score += 25;
+            other.gameObject.SetActive(false);
+        }
     }
 }
