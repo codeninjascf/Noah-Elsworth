@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject gameOverMenu;
     public TextMeshProUGUI gameOverScoreText;
-    public TextMeshProUGUI gameOverHighScoreText
+    public TextMeshProUGUI gameOverHighScoreText;
 
 
     private bool _gameOver;
@@ -42,6 +42,21 @@ public class UIManager : MonoBehaviour
 
                 _highScore = GameManager.Score;
             PlayerPrefs.SetInt("Highscore", _highScore);
+
+
+            gameOverScoreText.text = "Score: " + GameManager.Score;
+            gameOverHighScoreText.text = "High Score: " + _highScore;
         }
     }
+    public void StartGame()
+    {
+        mainMenu.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+        GameManager.StartGame();
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
+   
