@@ -28,14 +28,15 @@ public class Movement : MonoBehaviour
         {
             _canJump = false;
         }
+        if(_canJump && MobileInput.Tap)
         if (_canJump && Input.GetButtonDown("Jump"))
         {
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        float movement = moveSpeed * Input.GetAxis("Horizontal");
+        float movement = moveSpeed * MobileInput.Tilt("Horizontal");
 
         transform.position += movement * Time.deltaTime * Vector3.right;
     }
