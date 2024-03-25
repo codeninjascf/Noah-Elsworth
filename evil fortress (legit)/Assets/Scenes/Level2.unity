@@ -1068,6 +1068,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Teleporter
       objectReference: {fileID: 0}
+    - target: {fileID: 7233785769851703552, guid: 7f9eb0405c848e744b154c472fbb2f2d, type: 3}
+      propertyPath: nextScene
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233785769851703552, guid: 7f9eb0405c848e744b154c472fbb2f2d, type: 3}
+      propertyPath: completionMenu
+      value: 
+      objectReference: {fileID: 68305659}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
