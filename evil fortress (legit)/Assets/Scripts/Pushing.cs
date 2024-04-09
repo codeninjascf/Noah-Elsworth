@@ -8,10 +8,16 @@ public class Pushing : MonoBehaviour
     private bool _pushing;
     private Animator _animator;
 
+    public AudioClip footsteps;
+    public AudioClip boxSliding;
+
+    private AudioSource _audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,11 +55,15 @@ public class Pushing : MonoBehaviour
         _animator.SetBool("isPushing", true);
 
         CancelInvoke("StopPushing");
+
+        _audioSource.clip = boxSliding;
     }
 
     void StopPushing()
     {
         _animator.SetBool("isPushing", false);
         _pushing = false;
+
+        _audioSource.clip = footsteps;
     }
 }
