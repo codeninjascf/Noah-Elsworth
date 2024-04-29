@@ -18,6 +18,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(level.GameOver &&)
+        if(level.GameOver && gridManager.MoveComplete && !_gameEnded)
+        {
+            _gameEnded = true;
+
+            gridManager.GameActive = false;
+
+            level.UpdateHighScore(gridManager.Score);
+            level.UpdateStarsAchieved(gridManager.Score);
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (gridManager.MadeMove)
+        {
+            level.MovesRemaining--;
+        }
     }
 }
