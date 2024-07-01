@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _enabled = true;
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_enabled) return;
         _isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
-            groundDistanceThreshold, whatIsGround);
+            groundDistanceThreshold, whatIsGround); 
 
         if(_isGrounded && Input.GetButtonDown("Jump"))
         {
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (!_enabled) return;
+        
         float movement = moveSpeed * Input.GetAxisRaw("Horizontal");
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
