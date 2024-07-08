@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public float respawnDelay = 1.5f;
     public PlayerController player;
+    public CameraFollow cam;
     public Vector3 spawnPosition;
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         player.transform.position = spawnPosition;
+
+        cam.ResetView();
     }
 
 }
