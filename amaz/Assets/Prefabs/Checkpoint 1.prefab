@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9211812668663347819}
   - component: {fileID: 2116210322935106225}
   m_Layer: 0
-  m_Name: Checkpoint
+  m_Name: Checkpoint 1
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   - {fileID: 6398321481970083571}
   - {fileID: 1020752580766636394}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2116210322935106225
 BoxCollider2D:

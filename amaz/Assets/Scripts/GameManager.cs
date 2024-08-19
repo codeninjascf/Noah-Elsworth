@@ -8,12 +8,15 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public CameraFollow cam;
     public Transform[] checkpoints;
+    public Transform[] collectibles;
 
     private int _currentCheckpoint;
+    private bool[] _collectiblesCollected;
     // Start is called before the first frame update
     void Start()
     {
-        _currentCheckpoint = 0;  
+        _currentCheckpoint = 0;
+        _collectiblesCollected = new bool[3];
     }
 
     // Update is called once per frame
@@ -44,7 +47,6 @@ public class GameManager : MonoBehaviour
         cam.ResetView();
     }
 
-
     public void SetCheckpoint(Transform checkpoint)
     {
         int checkpointNumber = Array.IndexOf(checkpoints, checkpoint);
@@ -55,11 +57,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void GotCollectible(Transform collectible)
     {
-        if (other.CompareTag("Checkpoint"))
-        {
-            gameManager.SetCheckpoint(other.transform);
-        }
+        int collectibleNumber = Array.IndexOf(collectibles, collectible);
+
+        _collectiblesCollected[collectibleNumber] = true;
     }
 }
