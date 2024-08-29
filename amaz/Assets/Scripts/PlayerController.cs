@@ -15,10 +15,12 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     private bool _enabled;
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _enabled = true;
     }
 
@@ -36,9 +38,10 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!_enabled) return;
-        
+        if (!_enabled) return;       
         float movement = moveSpeed * Input.GetAxisRaw("Horizontal");
+
+        _animator.SetBool("Moving", movement != 0);
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
     }
