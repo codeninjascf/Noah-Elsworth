@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.velocity = Vector2.up * jumpforce;
         }
+        else
+        {
+            _animator.SetBool("Jumping", false);
+        }
+
+        _animator.SetBool("Falling", !_isGrounded);
     }
     void FixedUpdate()
     {
@@ -42,6 +48,11 @@ public class PlayerController : MonoBehaviour
         float movement = moveSpeed * Input.GetAxisRaw("Horizontal");
 
         _animator.SetBool("Moving", movement != 0);
+
+        if (movement > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);                                                                                                                                                                                                                          
+        }
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
     }
@@ -54,6 +65,10 @@ public class PlayerController : MonoBehaviour
     public void Disable()
     {
         _enabled = false;
+
+        _animator.SetBool("Moving", false);
+        _animator.SetBool("Jumping", false);
+        _animator.SetBool("Falling", false);
     }
 
     void OnCollisionEnter2D(Collision2D other)
