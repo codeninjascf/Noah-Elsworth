@@ -51,7 +51,11 @@ public class PlayerController : MonoBehaviour
 
         if (movement > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);                                                                                                                                                                                                                          
+            transform.localScale = Vector3.one;                                                                                                                                                                                                                          
+        }
+        else if (movement < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
