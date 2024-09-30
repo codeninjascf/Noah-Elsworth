@@ -4,11 +4,15 @@ using UnityEngine;
 using System;
 public class GameManager : MonoBehaviour
 {
+    public int levelNumber;
     public float respawnDelay = 1.5f;
     public PlayerController player;
     public CameraFollow cam;
     public Transform[] checkpoints;
     public Transform[] collectibles;
+    public GameObject deathParticles;
+    public GameObject levelCompleteMenu;
+    public RubiesDisplay rubiesDisplay;
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
@@ -17,6 +21,9 @@ public class GameManager : MonoBehaviour
     {
         _currentCheckpoint = 0;
         _collectiblesCollected = new bool[3];
+
+        levelCompleteMenu.SetActive(false);
+        rubiesDisplay.levelNumber = levelNumber;
     }
 
     // Update is called once per frame
@@ -30,6 +37,11 @@ public class GameManager : MonoBehaviour
         player.Disable();
 
         player.gameObject.SetActive(false);
+
+        GameObject particles = Instantiate(deathParticles, new
+            Vector3(player.transform.position.x, player.transform.position.y),
+            Quaternion.identity);
+        Destroy(particles, 1f);
         StartCoroutine(ResetPlayer());
     }
 
@@ -62,5 +74,23 @@ public class GameManager : MonoBehaviour
         int collectibleNumber = Array.IndexOf(collectibles, collectible);
 
         _collectiblesCollected[collectibleNumber] = true;
+    }
+
+    public void ReachedGoal()
+    {
+        player.Disable();
+
+        PlayerPrefs.SetInt("Level" + levelNumber + "_Complete", 1);
+
+        for(int i = 0; i < 3; i++)
+        {
+            if (_collectiblesCollected[i])
+            {
+                PlayerPrefs.SetInt("Level" + levelNumber + "_Gem" +
+                    (i + 1), 1);
+            }
+        }
+        levelCompleteMenu.SetActive(true);
+        rubiesDisplay.UpdateRubies();
     }
 }

@@ -96,5 +96,9 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             Debug.Log("Collected");
         }
+        else if (other.CompareTag("Goal"))
+        {
+            gameManager.ReachedGoal();
+        }
     }
 }
