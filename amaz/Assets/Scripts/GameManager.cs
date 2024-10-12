@@ -11,11 +11,10 @@ public class GameManager : MonoBehaviour
     public Transform[] checkpoints;
     public Transform[] collectibles;
     public GameObject deathParticles;
-<<<<<<< HEAD
+
     public GameObject levelCompleteMenu;
     public RubiesDisplay rubiesDisplay;
-=======
->>>>>>> 91432eedccbb8ea09f13b56d9325f4d9fb496999
+
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
@@ -45,10 +44,7 @@ public class GameManager : MonoBehaviour
             Vector3(player.transform.position.x, player.transform.position.y),
             Quaternion.identity);
         Destroy(particles, 1f);
-<<<<<<< HEAD
-=======
 
->>>>>>> 91432eedccbb8ea09f13b56d9325f4d9fb496999
         StartCoroutine(ResetPlayer());
     }
 
