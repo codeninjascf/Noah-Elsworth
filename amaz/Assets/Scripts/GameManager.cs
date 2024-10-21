@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(menuSceneName);
     }
-
     public void LoadNextLevel()
     {
         SceneManager.LoadScene(nextLevelName);
