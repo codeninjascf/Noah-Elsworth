@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameManager gameManager;
     public float moveSpeed = 5f;
-    public float jumpforce = 10f;
+    public float jumpForce = 10f;
 
     public float groundDistanceThreshold = 0.55f;
     public float spriteHeight = 1.78f;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
             int multiplier = value ? -1 : 1;
             _rigidbody.gravityScale = multiplier * Mathf.Abs(_rigidbody.gravityScale);
-            jumpforce = multiplier * Mathf.Abs(jumpforce);
+            jumpForce = multiplier * Mathf.Abs(jumpForce);
 
             Transform body = transform.GetChild(0);
             body.localScale = new Vector3(1, multiplier, 1);
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if(_isGrounded && Input.GetButtonDown("Jump"))
         {
-            _rigidbody.velocity = Vector2.up * jumpforce;
+            _rigidbody.velocity = Vector2.up * jumpForce;
         }
         else
         {
@@ -131,6 +131,10 @@ public class PlayerController : MonoBehaviour
         else if(other.CompareTag("FlipGravity") && !GravityFlipped)
         {
             GravityFlipped = true;
+        }
+        else if (other.CompareTag("RevertGravity") && !GravityFlipped)
+        {
+            GravityFlipped = false;
         }
     }
 }
