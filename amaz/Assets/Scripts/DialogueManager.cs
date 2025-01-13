@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     [System.Serializable]
     public struct Interaction
     {
+
         public GameObject dialogue;
         public TextMeshProUGUI mainText;
 
