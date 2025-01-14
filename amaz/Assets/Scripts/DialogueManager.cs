@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
 
     public Interaction[] interactions;
 
-    private Interaction[] _activeInteraction;
+    private Interaction _activeInteraction;
 
     void NextMessage()
     {
