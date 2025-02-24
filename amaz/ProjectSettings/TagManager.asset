@@ -8,6 +8,9 @@ TagManager:
   - Checkpoint
   - Collectible
   - Goal
+  - RevertGravity
+  - FlipGravity
+  - Shuriken
   layers:
   - Default
   - TransparentFX
