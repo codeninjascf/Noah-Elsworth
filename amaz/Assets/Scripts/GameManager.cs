@@ -9,23 +9,34 @@ public class GameManager : MonoBehaviour
     public float respawnDelay = 1.5f;
     public string menuSceneName;
     public string nextLevelName;
+    public bool shurikensEnabled;
+
     public PlayerController player;
     public CameraFollow cam;
     public Transform[] checkpoints;
     public Transform[] collectibles;
-    public GameObject deathParticles;
-
     public GameObject levelCompleteMenu;
     public RubiesDisplay rubiesDisplay;
 
-
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
+    private int _shurikens;
     // Start is called before the first frame update
+
+    public int Shurikens
+    {
+        get => _shurikens;
+        set
+        {
+            _shurikens = value;
+        }
+    }
     void Start()
     {
         _currentCheckpoint = 0;
         _collectiblesCollected = new bool[3];
+
+        Shurikens = 5;
 
         levelCompleteMenu.SetActive(false);
         rubiesDisplay.levelNumber = levelNumber;
@@ -43,10 +54,7 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(false);
 
-        GameObject particles = Instantiate(deathParticles, new
-            Vector3(player.transform.position.x, player.transform.position.y),
-            Quaternion.identity);
-        Destroy(particles, 1f);
+        
 
         StartCoroutine(ResetPlayer());
     }

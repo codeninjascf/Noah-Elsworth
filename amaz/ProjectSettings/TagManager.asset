@@ -11,6 +11,7 @@ TagManager:
   - RevertGravity
   - FlipGravity
   - Shuriken
+  - Platform
   layers:
   - Default
   - TransparentFX
