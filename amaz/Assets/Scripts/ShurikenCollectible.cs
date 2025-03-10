@@ -19,9 +19,12 @@ public class ShurikenCollectible : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider2D other)
+    void OnTriggerEnter(Collider2D other)
     {
-
-        
+        if(other.CompareTag("Player"))
+        {
+            gameManager.Shurikens += collectibleValue;
+            gameObject.SetActive(false);
+        }       
     }
 }

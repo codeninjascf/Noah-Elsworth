@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
     private int _shurikens;
+
+    public GameObject shurikenOverlay;
+    //public TextMeshProUGUI shurikenText;
+    public GameObject[] shurikenCollectibles;
     // Start is called before the first frame update
 
     public int Shurikens
@@ -36,7 +40,7 @@ public class GameManager : MonoBehaviour
         _currentCheckpoint = 0;
         _collectiblesCollected = new bool[3];
 
-        Shurikens = 5;
+        Shurikens = 0;
 
         levelCompleteMenu.SetActive(false);
         rubiesDisplay.levelNumber = levelNumber;
