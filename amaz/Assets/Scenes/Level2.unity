@@ -1362,6 +1362,8 @@ MonoBehaviour:
   smoothingTime: 0.2
   cameraOffset: {x: 0, y: 2, z: 0}
   deathHeight: -2
+  heightLimitActive: 0
+  heightLimit: 16
 --- !u!1 &568884072
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2377,9 @@ MonoBehaviour:
   levelNumber: 2
   respawnDelay: 1.5
   menuSceneName: 
-  nextLevelName: 
+  nextLevelName: Level3
+  shurikensEnabled: 0
+  levelMusicName: Level2Ambient
   player: {fileID: 992084520}
   cam: {fileID: 519420033}
   checkpoints:
@@ -2386,9 +2390,10 @@ MonoBehaviour:
   - {fileID: 323617530}
   - {fileID: 403403022}
   - {fileID: 842132660}
-  deathParticles: {fileID: 4431122387399557106, guid: 3f417588a78af7348b269f1ef7c208e3, type: 3}
   levelCompleteMenu: {fileID: 1781343422}
   rubiesDisplay: {fileID: 8409197544115207893}
+  shurikenOverlay: {fileID: 0}
+  shurikenCollectibles: []
 --- !u!1 &896291557
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,11 +2762,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 857968465}
   moveSpeed: 5
-  jumpforce: 10
+  jumpForce: 10
   groundDistanceThreshold: 0.05
+  spriteHeight: 1.78
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  throwPosition: {fileID: 0}
+  shuriken: {fileID: 0}
 --- !u!70 &992084521
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4181,6 +4189,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2137463818
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.262672
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.173752
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715883405978547070, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9078056819631268402, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9993ab8dbf6115f4798a5d67c4b0538e, type: 3}
 --- !u!1 &421689986653528671
 GameObject:
   m_ObjectHideFlags: 0

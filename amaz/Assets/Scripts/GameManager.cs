@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public string menuSceneName;
     public string nextLevelName;
     public bool shurikensEnabled;
+    public string levelMusicName;
 
     public PlayerController player;
     public CameraFollow cam;
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
     private int _shurikens;
+
+    private AudioManager _audioManager;
 
     public GameObject shurikenOverlay;
     //public TextMeshProUGUI shurikenText;
@@ -44,6 +47,11 @@ public class GameManager : MonoBehaviour
 
         levelCompleteMenu.SetActive(false);
         rubiesDisplay.levelNumber = levelNumber;
+
+        _audioManager = FindObjectOfType<AudioManager>();
+
+        _audioManager.FindAudio(levelMusicName).loop = true;
+        _audioManager.PlayAudio(levelMusicName);
     }
 
     // Update is called once per frame
@@ -58,7 +66,7 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(false);
 
-        
+        _audioManager.PlayAudio("PlayerDeath");
 
         StartCoroutine(ResetPlayer());
     }
@@ -84,6 +92,7 @@ public class GameManager : MonoBehaviour
         if(checkpointNumber > _currentCheckpoint)
         {
             _currentCheckpoint = checkpointNumber;
+            _audioManager.PlayAudio("ActivateCheckpoint");
         }
     }
 
@@ -92,6 +101,8 @@ public class GameManager : MonoBehaviour
         int collectibleNumber = Array.IndexOf(collectibles, collectible);
 
         _collectiblesCollected[collectibleNumber] = true;
+
+        _audioManager.PlayAudio("GemCollect");
     }
 
     public void ReachedGoal()
@@ -108,6 +119,8 @@ public class GameManager : MonoBehaviour
                     (i + 1), 1);
             }
         }
+        _audioManager.PlayAudio("LevelComplete");
+
         levelCompleteMenu.SetActive(true);
         levelCompleteMenu.GetComponent<Animator>().SetTrigger("Activate");
         rubiesDisplay.UpdateRubies();
@@ -115,10 +128,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
+        _audioManager.PlayAudio("ButtonClick");
         SceneManager.LoadScene(menuSceneName);
     }
     public void LoadNextLevel()
     {
+        _audioManager.PlayAudio("ButtonClick");
         SceneManager.LoadScene(nextLevelName);
     }
 }

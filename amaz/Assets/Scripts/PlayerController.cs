@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool _enabled;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    private AudioManager _audioManager;
     // Start is called before the first frame update
 
     public bool GravityFlipped
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioManager = FindObjectOfType<AudioManager>();
 
         GravityFlipped = false;
         _enabled = true;
@@ -57,13 +59,21 @@ public class PlayerController : MonoBehaviour
             groundDistanceThreshold + spriteHeight, whatIsGround);
 
         if (!_enabled) return;
+
+        bool previouslyGrounded = _isGrounded;
         _isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
             groundDistanceThreshold, whatIsGround);
+
+        if(!previouslyGrounded && _isGrounded)
+        {
+            _audioManager.PlayAudio("PlayerLand");
+        }
             
 
         if(_isGrounded && Input.GetButtonDown("Jump"))
         {
             _rigidbody.velocity = Vector2.up * jumpForce;
+            _audioManager.PlayAudio("PlayerJump");
         }
         else
         {
@@ -79,6 +89,7 @@ public class PlayerController : MonoBehaviour
             newShuriken.GetComponent<ShurikenController>().Initialise(
                 (int)transform.localScale.x);
             gameManager.Shurikens--;
+            _audioManager.PlayAudio("ShurikenThrow");
         }
     }
     void FixedUpdate()
@@ -98,6 +109,15 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
+
+        if(movement == 0 || !_isGrounded)
+        {
+            _audioManager.StopAudio("PlayerRun");
+        }
+        else
+        {
+            _audioManager.PlayAudio("PlayerRun");
+        }
     }
 
     public void Enable()
